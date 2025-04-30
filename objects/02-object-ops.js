@@ -81,18 +81,73 @@ for (let restaurant of restaurants) {
 		- Practice nesting for loops and for...in loops.
 		- Loop back through, this time printing a template literal that uses the values for each object.
 */
+let student1 = {
+	name: "Bill",
+	age: 16,
+	gradeLevel: "Junior"
+}
 
+let student2 = {
+	name: "Melanie",
+	age: 17,
+	gradeLevel: "Senior"
+}
+
+let students = [student1, student2];
+
+for (let student of students) {
+	console.log(`Student: ${student.name}, Age: ${student.age}, Grade Level: ${student.gradeLevel}`);
+}
 /*
 	Create two objects representing different local attractions (zoo, gardens, museums, etc), each with the following properties: name, location, adultTicketPrice, childTicketPrice, and famousFeatures (array of three strings). Be creative! Place the objects in an array.
 */
+let sixFlags = {
+	name: "Six Flags",
+	location: "St. Louis",
+	adultTicketPrice: 55,
+	childTicketPrice: 35,
+	famousFeatures: ["Roller coasters", "Turkey legs", "Hurricane Harbor"]
+}
 
+let zoo = {
+	name: "STL Zoo",
+	location: "St. Louis",
+	adultTicketPrice: 0,
+	childTicketPrice: 0,
+	famousFeatures: ["Animals", "Shows", "Train rides"]
+}
+
+let museum = {
+	name: "Museum of Ice Cream",
+	location: "Chicago",
+	adultTicketPrice: 35,
+	childTicketPrice: 15,
+	famousFeatures: ["Ice cream", "Colorful exhibits", "Selfies"]
+}
 // TODO: create objects and put them in an array
+
+let attractions = [sixFlags, zoo, museum];
 
 /*
 	Loop through the array, then within that for loop, use a for...in loop to grab values from each key and print them to the console. If you come across a key storing an array, print each element in the array instead of the array itself. Remember that you need a new index variable with each nested FOR loop (i, j are common).
 
 	NOTE: This is a tough one to think through when you're new at this. If you get completely stuck, reference the solution that accompanies this starter code. But make an effort to figure it out yourself first!
 */
+
+for (let attraction of attractions) { 		//Loops through each attraction in the attractions array
+	console.log(`Attraction: ${attraction.name}`); 		//Prints each attraction name
+
+	for (let key in attraction) {		//Iterates through each key in the attraction object
+		if (Array.isArray(attraction[key])) {		//Checks for arrarys in the attraction object
+			console.log(`${key}:`);		//Prints the key of the array found
+			for (let feature of attraction[key]) {		//Iterates through the array and prints the features
+				console.log(` ${feature}`);
+			}
+		} else {
+			console.log(`${key}: ${attraction[key]}`);		//Prints the key value pair 
+		}
+	}
+}
 
 // TODO: use nested loops to print values inside objects
 
@@ -107,3 +162,6 @@ for (let restaurant of restaurants) {
 
 // TODO: Print a template literal
 
+for (let attraction of attractions) {
+	console.log(`******************************\n${attraction.name} - ${attraction.location}\n*****************************\nA favorite with the locals, the ${attraction.name} boasts over a dozen features, including the ${attraction.famousFeatures[0]}, ${attraction.famousFeatures[1]}, and ${attraction.famousFeatures[2]}. Admission is ${attraction.adultTicketPrice} for adults, ${attraction.childTicketPrice} for ages 5-12, and free forchildren 4 and under.`)
+}
